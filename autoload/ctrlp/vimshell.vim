@@ -20,7 +20,11 @@ endfunction
 
 function! ctrlp#vimshell#accept(mode, str) abort
     call ctrlp#exit()
-    let l:result=matchstr(a:str,g:ctrlp_default_input.'\zs.*\ze')
+    if !empty(s:cur_line)
+      let l:result=matchstr(a:str,g:ctrlp_default_input.'\zs.*\ze')
+    else
+      let l:result=a:str
+    endif
     call feedkeys('i'.l:result."\<CR>")
 endfunction
 
@@ -39,12 +43,12 @@ function! ctrlp#vimshell#start(...) abort
   else
     return
   endif
-  let l:current_input=getline(line('.'))
-  let l:current_input=matchstr(l:current_input,g:vimshell_prompt.'\zs.*\ze')
-  if empty(l:current_input)
+  let s:cur_line=getline(line('.'))
+  let s:cur_line=matchstr(s:cur_line,g:vimshell_prompt.'\zs.*\ze')
+  if empty(s:cur_line)
     let g:ctrlp_default_input=s:text[len(s:text)-1]
   else
-    let g:ctrlp_default_input=l:current_input
+    let g:ctrlp_default_input=s:cur_line
   endif
   call ctrlp#init(ctrlp#vimshell#id()) 
   call feedkeys("\<C-h>")
