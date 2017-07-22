@@ -19,13 +19,17 @@ function! ctrlp#vimshell#init() abort
 endfunction
 
 function! ctrlp#vimshell#accept(mode, str) abort
-    call ctrlp#exit()
-    if !empty(s:cur_line)
-      let l:result=matchstr(a:str,s:default_input.'\zs.*\ze')
-    else
-      let l:result=a:str
-    endif
+  call ctrlp#exit()
+  if !empty(s:cur_line)
+    let l:result=matchstr(a:str,s:default_input.'\zs.*\ze')
+  else
+    let l:result=a:str
+  endif
+  if a:mode ==# 'h'
+    call feedkeys('i'.l:result)
+  else
     call feedkeys('i'.l:result."\<CR>")
+  endif
 endfunction
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
