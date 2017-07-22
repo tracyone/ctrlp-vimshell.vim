@@ -21,7 +21,7 @@ endfunction
 function! ctrlp#vimshell#accept(mode, str) abort
     call ctrlp#exit()
     if !empty(s:cur_line)
-      let l:result=matchstr(a:str,g:ctrlp_default_input.'\zs.*\ze')
+      let l:result=matchstr(a:str,s:default_input.'\zs.*\ze')
     else
       let l:result=a:str
     endif
@@ -50,8 +50,10 @@ function! ctrlp#vimshell#start(...) abort
   else
     let g:ctrlp_default_input=s:cur_line
   endif
+  let s:default_input=g:ctrlp_default_input
   call ctrlp#init(ctrlp#vimshell#id()) 
   call feedkeys("\<C-h>")
+  let g:ctrlp_default_input=''
 endfunction
 
 " vim:nofen:fdl=0:ts=2:sw=2:sts=2
