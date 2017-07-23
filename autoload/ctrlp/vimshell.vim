@@ -47,8 +47,8 @@ function! ctrlp#vimshell#start(...) abort
   else
     return
   endif
-  let s:cur_line=getline(line('.'))
-  let s:cur_line=matchstr(s:cur_line,g:vimshell_prompt.'\zs.*\ze')
+
+  let s:cur_line=vimshell#get_cur_text()
   if empty(s:cur_line)
     let g:ctrlp_default_input=s:text[len(s:text)-1]
   else
@@ -56,7 +56,7 @@ function! ctrlp#vimshell#start(...) abort
   endif
   let s:default_input=g:ctrlp_default_input
   call ctrlp#init(ctrlp#vimshell#id()) 
-  call feedkeys("\<C-h>")
+  call feedkeys("\<C-l>")
   let g:ctrlp_default_input=''
 endfunction
 
