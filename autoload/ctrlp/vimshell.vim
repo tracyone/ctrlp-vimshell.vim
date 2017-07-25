@@ -48,7 +48,7 @@ function! ctrlp#vimshell#start(...) abort
     return
   endif
 
-  let s:cur_line=vimshell#get_cur_text()
+  let s:cur_line=matchstr(vimshell#get_cur_text(),'^\s*\zs.*\ze')
   if empty(s:cur_line)
     let g:ctrlp_default_input=s:text[len(s:text)-1]
   else
