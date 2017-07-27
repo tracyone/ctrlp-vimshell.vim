@@ -2,7 +2,7 @@
 
 Execute vimshell history by ctrlp interface.
 
-Dependence: [vimshell](https://github.com/Shougo/vimshell.vim) and [ctrlp.vim](https://github.com/ctrlp.vim/ctrlp.vim)
+Dependence: [vimshell](https://github.com/Shougo/vimshell.vim) and [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim)
 
 vimshell is a amazing shell for vim. I like it, But some of its function are depending on other plugin like [unite.vim](https://github.com/Shougo/unite.vim).
 
