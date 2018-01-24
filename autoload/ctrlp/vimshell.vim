@@ -13,7 +13,7 @@ call add(g:ctrlp_ext_vars, {
   \ 'specinput': 0,
   \ })
 
-let s:text = ''
+let s:text = []
 function! ctrlp#vimshell#init() abort
   return s:text
 endfunction
